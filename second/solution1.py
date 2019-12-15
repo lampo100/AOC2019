@@ -23,15 +23,15 @@ class OpcodeHandler:
 
     def next(self):
         index = self.__opcode_index * 4
-        operation = parser[index]
+        operation = self.__parser[index]
         if operation == 99:
             return False
-        first_argument = parser[parser[index + 1]]
-        second_argument = parser[parser[index + 2]]
+        first_argument = self.__parser[self.__parser[index + 1]]
+        second_argument = self.__parser[self.__parser[index + 2]]
         if operation == 1:
-            parser[parser[index + 3]] = first_argument + second_argument
+            self.__parser[self.__parser[index + 3]] = first_argument + second_argument
         elif operation == 2:
-            parser[parser[index + 3]] = first_argument * second_argument
+            self.__parser[self.__parser[index + 3]] = first_argument * second_argument
         else:
             raise Exception("Unknown opcode [" + operation + "]")
         self.__opcode_index += 1
